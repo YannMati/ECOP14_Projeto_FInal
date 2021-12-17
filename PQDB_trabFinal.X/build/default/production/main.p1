@@ -1,0 +1,440 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[p mainexit ]
+"8 ./lcd.h
+[; ;./lcd.h: 8:   void lcdInit(void);
+[v _lcdInit `(v ~T0 @X0 0 ef ]
+"24 ./ssd.h
+[; ;./ssd.h: 24:  void ssdInit(void);
+[v _ssdInit `(v ~T0 @X0 0 ef ]
+"22 ./adc.h
+[; ;./adc.h: 22:  void adcInit(void);
+[v _adcInit `(v ~T0 @X0 0 ef ]
+"6 ./keypad.h
+[; ;./keypad.h: 6:  void kpInit(void);
+[v _kpInit `(v ~T0 @X0 0 ef ]
+"25 ./pwm.h
+[; ;./pwm.h: 25:  void pwmInit(void);
+[v _pwmInit `(v ~T0 @X0 0 ef ]
+"27 ./timer.h
+[; ;./timer.h: 27:  void timerInit(void);
+[v _timerInit `(v ~T0 @X0 0 ef ]
+"26
+[; ;./timer.h: 26:  void timerReset(unsigned int tempo);
+[v _timerReset `(v ~T0 @X0 0 ef1`ui ]
+"23 ./ssd.h
+[; ;./ssd.h: 23:  void ssdUpdate(void);
+[v _ssdUpdate `(v ~T0 @X0 0 ef ]
+"23 ./adc.h
+[; ;./adc.h: 23:  int adcRead(unsigned int channel);
+[v _adcRead `(i ~T0 @X0 0 ef1`ui ]
+"7 ./lcd.h
+[; ;./lcd.h: 7:   void lcdPosition(int line, int col);
+[v _lcdPosition `(v ~T0 @X0 0 ef2`i`i ]
+"4
+[; ;./lcd.h: 4:   void lcdChar(char value);
+[v _lcdChar `(v ~T0 @X0 0 ef1`uc ]
+"5 ./keypad.h
+[; ;./keypad.h: 5:  void kpDebounce(void);
+[v _kpDebounce `(v ~T0 @X0 0 ef ]
+"3
+[; ;./keypad.h: 3:  unsigned int kpRead(void);
+[v _kpRead `(ui ~T0 @X0 0 ef ]
+"23 ./pwm.h
+[; ;./pwm.h: 23:  void pwmSet(unsigned char porcento);
+[v _pwmSet `(v ~T0 @X0 0 ef1`uc ]
+"22 ./ssd.h
+[; ;./ssd.h: 22:  void ssdDigit(char val, char pos);
+[v _ssdDigit `(v ~T0 @X0 0 ef2`uc`uc ]
+"24 ./timer.h
+[; ;./timer.h: 24:  void timerWait(void);
+[v _timerWait `(v ~T0 @X0 0 ef ]
+"26 ./config.h
+[p x OSC=HS                   ]
+"27
+[p x FCMEN  =  OFF ]
+"28
+[p x IESO  =  OFF ]
+"29
+[p x PWRT  =  OFF ]
+"30
+[p x BOREN  =  OFF ]
+"31
+[p x BORV  =  46 ]
+"32
+[p x WDT=OFF                  ]
+"33
+[p x WDTPS  =  1                ]
+"34
+[p x MCLRE=ON                 ]
+"35
+[p x LPT1OSC  =  OFF ]
+"36
+[p x PBADEN  =  ON ]
+"37
+[p x CCP2MX  =  PORTC ]
+"38
+[p x STVREN  =  OFF ]
+"39
+[p x LVP=OFF                  ]
+"40
+[p x XINST  =  OFF ]
+"41
+[p x DEBUG  =  OFF              ]
+"43
+[p x CP0  =  OFF ]
+"44
+[p x CP1  =  OFF ]
+"45
+[p x CP2  =  OFF ]
+"46
+[p x CP3  =  OFF ]
+"47
+[p x CPB  =  OFF ]
+"48
+[p x CPD  =  OFF ]
+"50
+[p x WRT0  =  OFF ]
+"51
+[p x WRT1  =  OFF ]
+"52
+[p x WRT2  =  OFF ]
+"53
+[p x WRT3  =  OFF ]
+"54
+[p x WRTB  =  OFF ]
+"55
+[p x WRTC  =  OFF ]
+"56
+[p x WRTD  =  OFF ]
+"58
+[p x EBTR0  =  OFF ]
+"59
+[p x EBTR1  =  OFF ]
+"60
+[p x EBTR2  =  OFF ]
+"61
+[p x EBTR3  =  OFF ]
+"62
+[p x EBTRB  =  OFF ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"10 main.c
+[; ;main.c: 10: void main(void) {
+[v _main `(v ~T0 @X0 1 ef ]
+{
+[e :U _main ]
+[f ]
+"11
+[; ;main.c: 11:     unsigned int v, v0, v1, v2, v3;
+[v _v `ui ~T0 @X0 1 a ]
+[v _v0 `ui ~T0 @X0 1 a ]
+[v _v1 `ui ~T0 @X0 1 a ]
+[v _v2 `ui ~T0 @X0 1 a ]
+[v _v3 `ui ~T0 @X0 1 a ]
+"12
+[; ;main.c: 12:     unsigned int t0, t1, t2, t3;
+[v _t0 `ui ~T0 @X0 1 a ]
+[v _t1 `ui ~T0 @X0 1 a ]
+[v _t2 `ui ~T0 @X0 1 a ]
+[v _t3 `ui ~T0 @X0 1 a ]
+"13
+[; ;main.c: 13:     char slot;
+[v _slot `uc ~T0 @X0 1 a ]
+"14
+[; ;main.c: 14:     unsigned long int cont = 0;
+[v _cont `ul ~T0 @X0 1 a ]
+[e = _cont -> -> -> 0 `i `l `ul ]
+"15
+[; ;main.c: 15:     unsigned int tecla = 16;
+[v _tecla `ui ~T0 @X0 1 a ]
+[e = _tecla -> -> 16 `i `ui ]
+"17
+[; ;main.c: 17:     lcdInit();
+[e ( _lcdInit ..  ]
+"18
+[; ;main.c: 18:     ssdInit();
+[e ( _ssdInit ..  ]
+"19
+[; ;main.c: 19:     adcInit();
+[e ( _adcInit ..  ]
+"20
+[; ;main.c: 20:     kpInit();
+[e ( _kpInit ..  ]
+"21
+[; ;main.c: 21:     pwmInit();
+[e ( _pwmInit ..  ]
+"22
+[; ;main.c: 22:     timerInit();
+[e ( _timerInit ..  ]
+"24
+[; ;main.c: 24:     for (;;) {
+{
+[e :U 2 ]
+{
+"25
+[; ;main.c: 25:         timerReset(10000);
+[e ( _timerReset (1 -> -> 10000 `i `ui ]
+"26
+[; ;main.c: 26:         ssdUpdate();
+[e ( _ssdUpdate ..  ]
+"27
+[; ;main.c: 27:         v = adcRead(0);
+[e = _v -> ( _adcRead (1 -> -> 0 `i `ui `ui ]
+"28
+[; ;main.c: 28:         switch(slot){
+[e $U 6  ]
+{
+"29
+[; ;main.c: 29:             case 0:
+[e :U 7 ]
+"30
+[; ;main.c: 30:                 cont+=2;
+[e =+ _cont -> -> -> 2 `i `l `ul ]
+"31
+[; ;main.c: 31:                 lcdPosition(0, 0);
+[e ( _lcdPosition (2 , -> 0 `i -> 0 `i ]
+"33
+[; ;main.c: 33:                 t3=(((cont / 360000) % 24) / 10);
+[e = _t3 -> / % / _cont -> -> 360000 `l `ul -> -> -> 24 `i `l `ul -> -> -> 10 `i `l `ul `ui ]
+"34
+[; ;main.c: 34:                 t2=(((cont / 360000) % 24) % 10);
+[e = _t2 -> % % / _cont -> -> 360000 `l `ul -> -> -> 24 `i `l `ul -> -> -> 10 `i `l `ul `ui ]
+"35
+[; ;main.c: 35:                 t1=(((cont / 60000) % 6) % 10);
+[e = _t1 -> % % / _cont -> -> 60000 `l `ul -> -> -> 6 `i `l `ul -> -> -> 10 `i `l `ul `ui ]
+"36
+[; ;main.c: 36:                 t0=(((cont / 6000) % 10) % 10);
+[e = _t0 -> % % / _cont -> -> -> 6000 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 10 `i `l `ul `ui ]
+"37
+[; ;main.c: 37:                 lcdChar(t3 + 48);
+[e ( _lcdChar (1 -> + _t3 -> -> 48 `i `ui `uc ]
+"38
+[; ;main.c: 38:                 lcdChar(t2 + 48);
+[e ( _lcdChar (1 -> + _t2 -> -> 48 `i `ui `uc ]
+"39
+[; ;main.c: 39:                 lcdChar(':');
+[e ( _lcdChar (1 -> -> 58 `ui `uc ]
+"40
+[; ;main.c: 40:                 lcdChar(t1 + 48);
+[e ( _lcdChar (1 -> + _t1 -> -> 48 `i `ui `uc ]
+"41
+[; ;main.c: 41:                 lcdChar(t0 + 48);
+[e ( _lcdChar (1 -> + _t0 -> -> 48 `i `ui `uc ]
+"42
+[; ;main.c: 42:                 lcdChar(':');
+[e ( _lcdChar (1 -> -> 58 `ui `uc ]
+"43
+[; ;main.c: 43:                 lcdChar((cont / 1000) % 6 + 48);
+[e ( _lcdChar (1 -> + % / _cont -> -> -> 1000 `i `l `ul -> -> -> 6 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
+"44
+[; ;main.c: 44:                 lcdChar((cont / 100) % 10 + 48);
+[e ( _lcdChar (1 -> + % / _cont -> -> -> 100 `i `l `ul -> -> -> 10 `i `l `ul -> -> -> 48 `i `l `ul `uc ]
+"47
+[; ;main.c: 47:                 lcdPosition(1, 0);
+[e ( _lcdPosition (2 , -> 1 `i -> 0 `i ]
+"48
+[; ;main.c: 48:                 lcdChar(v3+48);
+[e ( _lcdChar (1 -> + _v3 -> -> 48 `i `ui `uc ]
+"49
+[; ;main.c: 49:                 lcdChar(v2+48);
+[e ( _lcdChar (1 -> + _v2 -> -> 48 `i `ui `uc ]
+"50
+[; ;main.c: 50:                 lcdChar(':');
+[e ( _lcdChar (1 -> -> 58 `ui `uc ]
+"51
+[; ;main.c: 51:                 lcdChar(v1+48);
+[e ( _lcdChar (1 -> + _v1 -> -> 48 `i `ui `uc ]
+"52
+[; ;main.c: 52:                 lcdChar(v0+48);
+[e ( _lcdChar (1 -> + _v0 -> -> 48 `i `ui `uc ]
+"53
+[; ;main.c: 53:                 ssdUpdate();
+[e ( _ssdUpdate ..  ]
+"54
+[; ;main.c: 54:                 slot = 1;
+[e = _slot -> -> 1 `i `uc ]
+"55
+[; ;main.c: 55:                 break;
+[e $U 5  ]
+"56
+[; ;main.c: 56:             case 1:
+[e :U 8 ]
+"57
+[; ;main.c: 57:                 kpDebounce();
+[e ( _kpDebounce ..  ]
+"58
+[; ;main.c: 58:                 slot = 2;
+[e = _slot -> -> 2 `i `uc ]
+"59
+[; ;main.c: 59:                 break;
+[e $U 5  ]
+"60
+[; ;main.c: 60:             case 2:
+[e :U 9 ]
+"61
+[; ;main.c: 61:                 if (kpRead() != tecla) {
+[e $ ! != ( _kpRead ..  _tecla 10  ]
+{
+"62
+[; ;main.c: 62:                     tecla = kpRead();
+[e = _tecla ( _kpRead ..  ]
+"63
+[; ;main.c: 63:                     if (((tecla) & (1<<(0))))
+[e $ ! != & _tecla -> << -> 1 `i -> 0 `i `ui -> -> 0 `i `ui 11  ]
+"64
+[; ;main.c: 64:                         cont+=360000;
+[e =+ _cont -> -> 360000 `l `ul ]
+[e :U 11 ]
+"65
+[; ;main.c: 65:                     if (((tecla) & (1<<(2))))
+[e $ ! != & _tecla -> << -> 1 `i -> 2 `i `ui -> -> 0 `i `ui 12  ]
+"66
+[; ;main.c: 66:                         cont-=360000;
+[e =- _cont -> -> 360000 `l `ul ]
+[e :U 12 ]
+"67
+[; ;main.c: 67:                     if (((tecla) & (1<<(9))))
+[e $ ! != & _tecla -> << -> 1 `i -> 9 `i `ui -> -> 0 `i `ui 13  ]
+"68
+[; ;main.c: 68:                         cont+=6000;
+[e =+ _cont -> -> -> 6000 `i `l `ul ]
+[e :U 13 ]
+"69
+[; ;main.c: 69:                     if (((tecla) & (1<<(4))))
+[e $ ! != & _tecla -> << -> 1 `i -> 4 `i `ui -> -> 0 `i `ui 14  ]
+"70
+[; ;main.c: 70:                         cont-=6000;
+[e =- _cont -> -> -> 6000 `i `l `ul ]
+[e :U 14 ]
+"71
+[; ;main.c: 71:                     if (((tecla) & (1<<(5))))
+[e $ ! != & _tecla -> << -> 1 `i -> 5 `i `ui -> -> 0 `i `ui 15  ]
+"72
+[; ;main.c: 72:                         cont+=100;
+[e =+ _cont -> -> -> 100 `i `l `ul ]
+[e :U 15 ]
+"73
+[; ;main.c: 73:                     if (((tecla) & (1<<(7))))
+[e $ ! != & _tecla -> << -> 1 `i -> 7 `i `ui -> -> 0 `i `ui 16  ]
+"74
+[; ;main.c: 74:                         cont-=100;
+[e =- _cont -> -> -> 100 `i `l `ul ]
+[e :U 16 ]
+"75
+[; ;main.c: 75:                     if (((tecla) & (1<<(3))))
+[e $ ! != & _tecla -> << -> 1 `i -> 3 `i `ui -> -> 0 `i `ui 17  ]
+"76
+[; ;main.c: 76:                         pwmSet(0);
+[e ( _pwmSet (1 -> -> 0 `i `uc ]
+[e :U 17 ]
+"77
+[; ;main.c: 77:                 }
+}
+[e :U 10 ]
+"78
+[; ;main.c: 78:                 slot = 3;
+[e = _slot -> -> 3 `i `uc ]
+"79
+[; ;main.c: 79:                 ssdUpdate();
+[e ( _ssdUpdate ..  ]
+"80
+[; ;main.c: 80:                 break;
+[e $U 5  ]
+"81
+[; ;main.c: 81:             case 3:
+[e :U 18 ]
+"83
+[; ;main.c: 83:                 ssdDigit(v3, 0);
+[e ( _ssdDigit (2 , -> _v3 `uc -> -> 0 `i `uc ]
+"84
+[; ;main.c: 84:                 ssdDigit(v2, 1);
+[e ( _ssdDigit (2 , -> _v2 `uc -> -> 1 `i `uc ]
+"85
+[; ;main.c: 85:                 ssdDigit(v1, 2);
+[e ( _ssdDigit (2 , -> _v1 `uc -> -> 2 `i `uc ]
+"86
+[; ;main.c: 86:                 ssdDigit(v0, 3);
+[e ( _ssdDigit (2 , -> _v0 `uc -> -> 3 `i `uc ]
+"87
+[; ;main.c: 87:                 slot = 0;
+[e = _slot -> -> 0 `i `uc ]
+"88
+[; ;main.c: 88:                 for(char i=0; i<50; i++)
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 50 `i 19  ]
+[e $U 20  ]
+[e :U 19 ]
+"89
+[; ;main.c: 89:                 break;
+[e $U 20  ]
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 50 `i 19  ]
+[e :U 20 ]
+}
+"90
+[; ;main.c: 90:             case 4:
+[e :U 22 ]
+"92
+[; ;main.c: 92:                 v0= ((int)(v*1.4/ 1)) % 10;
+[e = _v0 -> % -> / * -> _v `d .1.4 -> -> 1 `i `d `i -> 10 `i `ui ]
+"93
+[; ;main.c: 93:                 v1= ((int)(v*1.4/ 10)) % 6;
+[e = _v1 -> % -> / * -> _v `d .1.4 -> -> 10 `i `d `i -> 6 `i `ui ]
+"94
+[; ;main.c: 94:                 v2= ((int)(v*1.4/ 60)) % 10;
+[e = _v2 -> % -> / * -> _v `d .1.4 -> -> 60 `i `d `i -> 10 `i `ui ]
+"95
+[; ;main.c: 95:                 v3= ((int)(v*1.4/ 600)) % 6;
+[e = _v3 -> % -> / * -> _v `d .1.4 -> -> 600 `i `d `i -> 6 `i `ui ]
+"97
+[; ;main.c: 97:                 if(t0==v0 && t1==v1 && t2==v2 && t3==v3){
+[e $ ! && && && == _t0 _v0 == _t1 _v1 == _t2 _v2 == _t3 _v3 23  ]
+{
+"98
+[; ;main.c: 98:                     pwmSet(100);
+[e ( _pwmSet (1 -> -> 100 `i `uc ]
+"99
+[; ;main.c: 99:                 }
+}
+[e :U 23 ]
+"100
+[; ;main.c: 100:                 slot = 0;
+[e = _slot -> -> 0 `i `uc ]
+"101
+[; ;main.c: 101:                 break;
+[e $U 5  ]
+"102
+[; ;main.c: 102:             default:
+[e :U 24 ]
+"103
+[; ;main.c: 103:                 slot = 0;
+[e = _slot -> -> 0 `i `uc ]
+"104
+[; ;main.c: 104:                 break;
+[e $U 5  ]
+"105
+[; ;main.c: 105:         }
+}
+[e $U 5  ]
+[e :U 6 ]
+[e [\ -> _slot `i , $ -> 0 `i 7
+ , $ -> 1 `i 8
+ , $ -> 2 `i 9
+ , $ -> 3 `i 18
+ , $ -> 4 `i 22
+ 24 ]
+[e :U 5 ]
+"106
+[; ;main.c: 106:         timerWait();
+[e ( _timerWait ..  ]
+"107
+[; ;main.c: 107:     }
+}
+[e $U 2  ]
+[e :U 3 ]
+}
+"108
+[; ;main.c: 108: }
+[e :UE 1 ]
+}
